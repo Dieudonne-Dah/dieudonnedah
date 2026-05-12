@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dieudonné Dah — Communication & Multimedia Consultant. 10+ years of experience in multimedia production and strategic communication for NGOs, UN agencies and development programs across Africa.">
+  <title>Dieudonné Dah — Communication & Multimedia Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0F172A;
+      --bg-2:        #1E293B;
+      --bg-3:        #0A1628;
+      --glass:       rgba(255,255,255,0.05);
+      --glass-b:     rgba(255,255,255,0.09);
+      --glass-bord:  rgba(255,255,255,0.10);
+      --teal:        #14B8A6;
+      --teal-d:      #0D9488;
+      --teal-glow:   rgba(20,184,166,0.25);
+      --gold:        #F59E0B;
+      --gold-h:      #FBBF24;
+      --gold-glow:   rgba(245,158,11,0.25);
+      --white:       #F1F5F9;
+      --white-dim:   rgba(241,245,249,0.72);
+      --white-muted: rgba(241,245,249,0.45);
+      --ease:        all 0.28s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; color: var(--white); background: var(--bg); line-height: 1.6; overflow-x: hidden; }
+
+    /* ── BILINGUAL ───────────────────────────────────────── */
+    [data-lang="en"] [data-fr],
+    [data-lang="fr"] [data-en] { display: none !important; }
+
+    /* ── SCROLLBAR ───────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-3); }
+    ::-webkit-scrollbar-thumb { background: var(--teal-d); border-radius: 3px; }
+
+    /* ── LANG TOGGLE ─────────────────────────────────────── */
+    .lang-toggle {
+      position: fixed; top: 1.1rem; right: 1.5rem; z-index: 1100;
+      display: flex; gap: 0.2rem;
+      background: rgba(15,23,42,0.7); backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-bord); border-radius: 2rem; padding: 0.2rem;
+    }
+    .lang-btn {
+      padding: 0.32rem 0.9rem; border-radius: 1.5rem; border: none;
+      cursor: pointer; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+      transition: var(--ease); background: transparent; color: var(--white-muted);
+    }
+    .lang-btn.active { background: var(--gold); color: #0F172A; }
+    .lang-btn:not(.active):hover { color: var(--white); }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(10,22,40,0.85); backdrop-filter: blur(20px);
+      padding: 0.9rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(20,184,166,0.12);
+    }
+    .nav-logo { color: var(--white); font-weight: 800; font-size: 1.05rem; text-decoration: none; letter-spacing: -0.01em; }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { color: var(--white-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: var(--ease); }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 70% 20%, rgba(20,184,166,0.12) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(245,158,11,0.08) 0%, transparent 50%),
+                  var(--bg-3);
+      display: flex; align-items: center;
+      padding: 7rem 2.5rem 5rem; position: relative; overflow: hidden;
+    }
+    .hero-orb1 {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,184,166,0.14) 0%, transparent 70%);
+      top: -200px; right: -100px; pointer-events: none; animation: drift1 12s ease-in-out infinite;
+    }
+    .hero-orb2 {
+      position: absolute; width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%);
+      bottom: -100px; left: -80px; pointer-events: none; animation: drift2 15s ease-in-out infinite;
+    }
+    @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,30px)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-25px)} }
+
+    .hero-inner {
+      max-width: 1120px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(20,184,166,0.12); border: 1px solid rgba(20,184,166,0.35);
+      color: var(--teal); padding: 0.4rem 1.1rem; border-radius: 2rem;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; margin-bottom: 1.6rem;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.52rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 4.5vw, 4rem); line-height: 1.05;
+      margin-bottom: 0.5rem; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #F1F5F9 0%, #94A3B8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-name span {
+      background: linear-gradient(135deg, var(--teal) 0%, #5EEAD4 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-title {
+      font-size: 1.05rem; font-weight: 600; margin-bottom: 1.4rem;
+      color: var(--gold); letter-spacing: 0.01em;
+    }
+    .hero-tagline { color: var(--white-dim); font-size: 1rem; line-height: 1.8; margin-bottom: 2.25rem; max-width: 480px; }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.25rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.7rem; border-radius: 0.6rem;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: var(--ease);
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--teal-d));
+      color: #0F172A; border: none;
+      box-shadow: 0 4px 20px var(--teal-glow);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(20,184,166,0.4); filter: brightness(1.1); }
+    .btn-ghost {
+      background: var(--glass); color: var(--white);
+      border: 1px solid var(--glass-bord); backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); background: rgba(20,184,166,0.08); }
+
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--gold); line-height: 1; }
+    .stat-lbl { font-size: 0.77rem; color: var(--white-muted); margin-top: 0.3rem; line-height: 1.35; }
+
+    /* Hero visual grid */
+    .hero-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .hero-card {
+      background: var(--glass); backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-bord); border-radius: 1.1rem; padding: 1.5rem;
+      transition: var(--ease); position: relative; overflow: hidden;
+    }
+    .hero-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+      opacity: 0; transition: var(--ease);
+    }
+    .hero-card:hover { background: var(--glass-b); transform: translateY(-4px); border-color: rgba(20,184,166,0.3); }
+    .hero-card:hover::before { opacity: 1; }
+    .hc-icon { font-size: 1.65rem; margin-bottom: 0.7rem; }
+    .hc-title { color: var(--white); font-weight: 600; font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .hc-sub { color: var(--white-muted); font-size: 0.76rem; line-height: 1.45; }
+
+    /* ── SECTION SHARED ──────────────────────────────────── */
+    section { padding: 6rem 2.5rem; }
+    .sec { max-width: 1120px; margin: 0 auto; }
+    .sec-lbl {
+      font-size: 0.72rem; font-weight: 700; color: var(--teal);
+      text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 0.7rem;
+    }
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem); color: var(--white);
+      margin-bottom: 0.9rem; line-height: 1.15;
+    }
+    .sec-bar {
+      width: 46px; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      border-radius: 2px; margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about {
+      background: radial-gradient(ellipse at 80% 50%, rgba(20,184,166,0.06) 0%, transparent 60%),
+                  var(--bg-2);
+    }
+    .about-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4.5rem; align-items: start; }
+    .about-text p { color: var(--white-dim); margin-bottom: 1.2rem; line-height: 1.85; font-size: 0.97rem; }
+    .tool-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.8rem; }
+    .tag {
+      background: rgba(20,184,166,0.08); border: 1px solid rgba(20,184,166,0.2);
+      color: var(--teal); padding: 0.3rem 0.85rem; border-radius: 2rem;
+      font-size: 0.78rem; font-weight: 500; transition: var(--ease);
+    }
+    .tag:hover { background: rgba(20,184,166,0.15); border-color: var(--teal); }
+
+    .values { display: flex; flex-direction: column; gap: 1.5rem; }
+    .val { display: flex; gap: 1.1rem; align-items: flex-start; }
+    .val-icon {
+      width: 46px; height: 46px; border-radius: 0.75rem; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(20,184,166,0.2), rgba(20,184,166,0.08));
+      border: 1px solid rgba(20,184,166,0.25);
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+    }
+    .val-title { font-weight: 700; color: var(--white); font-size: 0.92rem; margin-bottom: 0.25rem; }
+    .val-text { color: var(--white-muted); font-size: 0.84rem; line-height: 1.6; }
+
+    /* ── EXPERIENCE ──────────────────────────────────────── */
+    #experience {
+      background: radial-gradient(ellipse at 20% 60%, rgba(245,158,11,0.05) 0%, transparent 55%),
+                  var(--bg);
+    }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 185px; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--teal) 0%, rgba(20,184,166,0.1) 100%);
+    }
+    .tl-item { display: grid; grid-template-columns: 185px 1fr; gap: 2.5rem; margin-bottom: 2.75rem; position: relative; }
+    .tl-date { text-align: right; padding-right: 2.2rem; padding-top: 0.3rem; }
+    .tl-date-main { font-size: 0.8rem; font-weight: 700; color: var(--teal); }
+    .tl-date-loc { font-size: 0.75rem; color: var(--white-muted); margin-top: 0.12rem; }
+    .tl-dot {
+      position: absolute; left: 177px; top: 8px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(245,158,11,0.2), 0 0 14px rgba(245,158,11,0.4);
+    }
+    .tl-body {
+      background: var(--glass); backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-bord); border-radius: 1rem; padding: 1.65rem;
+      transition: var(--ease); position: relative; overflow: hidden;
+    }
+    .tl-body::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 3px; bottom: 0;
+      background: linear-gradient(180deg, var(--teal), transparent);
+      border-radius: 0 0 0 1rem;
+    }
+    .tl-body:hover { border-color: rgba(20,184,166,0.3); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .tl-org { font-size: 0.75rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+    .tl-role { font-size: 1.02rem; font-weight: 700; color: var(--white); margin-bottom: 0.8rem; }
+    .tl-desc { color: var(--white-dim); font-size: 0.88rem; line-height: 1.78; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tl-tag {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white-muted); padding: 0.2rem 0.7rem; border-radius: 2rem; font-size: 0.74rem;
+      transition: var(--ease);
+    }
+    .tl-tag:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── SKILLS ──────────────────────────────────────────── */
+    #skills {
+      background: radial-gradient(ellipse at 50% 0%, rgba(20,184,166,0.09) 0%, transparent 60%),
+                  var(--bg-3);
+    }
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .skill-card {
+      background: var(--glass); border: 1px solid var(--glass-bord);
+      border-radius: 1rem; padding: 1.65rem; transition: var(--ease);
+      position: relative; overflow: hidden;
+    }
+    .skill-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      opacity: 0; transition: var(--ease);
+    }
+    .skill-card:hover { background: var(--glass-b); transform: translateY(-4px); border-color: rgba(20,184,166,0.25); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+    .skill-card:hover::after { opacity: 1; }
+    .sk-icon { font-size: 1.75rem; margin-bottom: 0.9rem; }
+    .sk-title { color: var(--white); font-weight: 700; font-size: 0.93rem; margin-bottom: 1rem; }
+    .sk-list { list-style: none; display: flex; flex-direction: column; gap: 0.38rem; }
+    .sk-list li { color: var(--white-muted); font-size: 0.83rem; display: flex; align-items: center; gap: 0.55rem; }
+    .sk-list li::before { content: '▸'; color: var(--teal); font-size: 0.68rem; flex-shrink: 0; }
+
+    /* ── PORTFOLIO ───────────────────────────────────────── */
+    #portfolio {
+      background: radial-gradient(ellipse at 70% 50%, rgba(245,158,11,0.07) 0%, transparent 55%),
+                  var(--bg-2);
+    }
+    .portfolio-card {
+      background: var(--glass); backdrop-filter: blur(20px);
+      border: 1px solid rgba(20,184,166,0.2);
+      border-radius: 1.5rem; padding: 3.5rem;
+      display: flex; gap: 3rem; align-items: flex-start;
+      position: relative; overflow: hidden;
+    }
+    .portfolio-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--teal));
+    }
+    .portfolio-card::after {
+      content: ''; position: absolute; top: -120px; right: -120px;
+      width: 350px; height: 350px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pf-text { flex: 1; position: relative; z-index: 1; }
+    .pf-label { font-size: 0.75rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 0.6rem; }
+    .pf-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); margin-bottom: 0.9rem; line-height: 1.2; }
+    .pf-sub { color: var(--white-dim); font-size: 0.93rem; line-height: 1.75; margin-bottom: 2.25rem; }
+    .pf-highlights { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    .pf-hl {
+      background: rgba(20,184,166,0.07); border: 1px solid rgba(20,184,166,0.18);
+      border-radius: 0.875rem; padding: 1.25rem; transition: var(--ease);
+    }
+    .pf-hl:hover { background: rgba(20,184,166,0.12); border-color: rgba(20,184,166,0.35); }
+    .pf-hl-icon { font-size: 1.5rem; margin-bottom: 0.55rem; }
+    .pf-hl-title { color: var(--white); font-weight: 600; font-size: 0.86rem; }
+    .pf-hl-sub { color: var(--white-muted); font-size: 0.77rem; margin-top: 0.18rem; }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    #contact {
+      background: radial-gradient(ellipse at 30% 70%, rgba(20,184,166,0.08) 0%, transparent 55%),
+                  var(--bg);
+    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
+    .contact-intro { color: var(--white-dim); line-height: 1.85; font-size: 0.97rem; margin-bottom: 2rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 0.9rem; }
+    .c-item {
+      display: flex; align-items: center; gap: 1.1rem;
+      padding: 1.05rem 1.2rem; border-radius: 0.875rem;
+      border: 1px solid var(--glass-bord); background: var(--glass);
+      text-decoration: none; color: var(--white); transition: var(--ease);
+      backdrop-filter: blur(8px);
+    }
+    .c-item:hover { border-color: var(--teal); background: rgba(20,184,166,0.07); transform: translateX(5px); }
+    .c-icon {
+      width: 44px; height: 44px; border-radius: 0.65rem; flex-shrink: 0;
+      background: rgba(20,184,166,0.1); border: 1px solid rgba(20,184,166,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+    }
+    .c-lbl { font-size: 0.73rem; color: var(--white-muted); }
+    .c-val { font-weight: 700; color: var(--white); font-size: 0.92rem; }
+
+    .avail-card {
+      background: linear-gradient(145deg, rgba(20,184,166,0.15), rgba(13,148,136,0.08));
+      border: 1px solid rgba(20,184,166,0.3);
+      border-radius: 1.2rem; padding: 2.5rem; position: relative; overflow: hidden;
+    }
+    .avail-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+    .avail-card::after {
+      content: ''; position: absolute; bottom: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .avail-status {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; font-weight: 700; color: var(--teal); margin-bottom: 1.3rem;
+    }
+    .avail-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; box-shadow: 0 0 8px var(--teal); }
+    .avail-title { font-weight: 700; font-size: 1.12rem; margin-bottom: 0.7rem; color: var(--white); }
+    .avail-body { color: var(--white-muted); font-size: 0.88rem; line-height: 1.75; margin-bottom: 1.85rem; }
+    .btn-teal { background: var(--teal); color: #0F172A; font-weight: 700; border: none; box-shadow: 0 4px 20px var(--teal-glow); }
+    .btn-teal:hover { background: #5EEAD4; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(20,184,166,0.4); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--bg-3); border-top: 1px solid rgba(20,184,166,0.12);
+      padding: 2rem 2.5rem; text-align: center; color: var(--white-muted); font-size: 0.82rem;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+    footer a:hover { color: var(--gold); text-decoration: underline; }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-visual { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.75rem; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .timeline::before { display: none; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.8rem; }
+      .tl-dot { display: none; }
+      .tl-date { text-align: left; padding-right: 0; }
+      .portfolio-card { flex-direction: column; padding: 2.25rem; }
+      .pf-highlights { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4.5rem 1.25rem; }
+      nav { padding: 0.8rem 1.25rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: repeat(3,1fr); gap: 1rem; }
+      .nav-links { display: none; }
+      .lang-toggle { top: 0.75rem; right: 0.75rem; }
+      .hero { padding: 6rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LANGUAGE TOGGLE -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#home" class="nav-logo">D.<span>Dah</span></a>
+    <ul class="nav-links">
+      <li><a href="#about"><span data-en>About</span><span data-fr>À propos</span></a></li>
+      <li><a href="#experience"><span data-en>Experience</span><span data-fr>Expérience</span></a></li>
+      <li><a href="#skills"><span data-en>Skills</span><span data-fr>Compétences</span></a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span data-en>Available for new opportunities</span>
+          <span data-fr>Disponible pour de nouvelles opportunités</span>
+        </div>
+        <h1 class="hero-name">Dieudonné<br><span>Dah</span></h1>
+        <p class="hero-title">Communication &amp; Multimedia Consultant</p>
+        <p class="hero-tagline" data-en>10+ years crafting powerful stories and strategic communication for humanitarian organizations across Africa.</p>
+        <p class="hero-tagline" data-fr>Plus de 10 ans à créer des récits percutants et des stratégies de communication pour les organisations humanitaires en Afrique.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">
+            <span data-en>Get in touch</span>
+            <span data-fr>Me contacter</span>
+          </a>
+          <a href="https://www.behance.net/dieudonne_dah" target="_blank" class="btn btn-ghost">Portfolio ↗</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">10+</div>
+            <div class="stat-lbl" data-en>Years of experience</div>
+            <div class="stat-lbl" data-fr>Ans d'expérience</div>
+          </div>
+          <div>
+            <div class="stat-num">4+</div>
+            <div class="stat-lbl" data-en>UN & INGO clients</div>
+            <div class="stat-lbl" data-fr>Clients ONU / ONGI</div>
+          </div>
+          <div>
+            <div class="stat-num">5+</div>
+            <div class="stat-lbl" data-en>African countries</div>
+            <div class="stat-lbl" data-fr>Pays africains</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <div class="hc-icon">🎬</div>
+          <div class="hc-title" data-en>Video Production</div>
+          <div class="hc-title" data-fr>Production Vidéo</div>
+          <div class="hc-sub">Premiere Pro · DaVinci Resolve · After Effects</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">📡</div>
+          <div class="hc-title" data-en>Impact Storytelling</div>
+          <div class="hc-title" data-fr>Storytelling d'Impact</div>
+          <div class="hc-sub" data-en>From field realities to international audiences</div>
+          <div class="hc-sub" data-fr>Du terrain aux audiences internationales</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">🎯</div>
+          <div class="hc-title" data-en>Strategic Comms</div>
+          <div class="hc-title" data-fr>Comm. Stratégique</div>
+          <div class="hc-sub" data-en>Institutional, community & donor-facing</div>
+          <div class="hc-sub" data-fr>Institutionnelle, communautaire & bailleurs</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">🤖</div>
+          <div class="hc-title" data-en>AI for Media</div>
+          <div class="hc-title" data-fr>IA pour les Médias</div>
+          <div class="hc-sub">Midjourney · ElevenLabs · Whisper</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section id="about">
+    <div class="sec">
+      <p class="sec-lbl reveal" data-en>Who I Am</p>
+      <p class="sec-lbl reveal" data-fr>Mon Profil</p>
+      <h2 class="sec-title reveal">
+        <span data-en>Communicator. Producer. Strategist.</span>
+        <span data-fr>Communicant. Producteur. Stratège.</span>
+      </h2>
+      <div class="sec-bar reveal"></div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p data-en>I am a Communication &amp; Multimedia Consultant with over 10 years of experience working at the intersection of media production and humanitarian action across Africa. Based in Kampala, Uganda, I help NGOs, UN agencies, and development programs turn complex missions into compelling stories that engage audiences and mobilize support.</p>
+          <p data-fr>Consultant en communication et production multimédia avec plus de 10 ans d'expérience à l'intersection des médias et de l'action humanitaire en Afrique. Basé à Kampala (Ouganda), j'aide les ONG, agences ONU et programmes de développement à transformer des missions complexes en récits percutants qui mobilisent les audiences.</p>
+          <p data-en>From MINUSMA/UN peacekeeping operations in Mali to rural development projects across West Africa, I have produced content that drives accountability, builds institutional trust, and amplifies the voices of communities most affected by crisis and change.</p>
+          <p data-fr>Des opérations de maintien de la paix de la MINUSMA/ONU au Mali aux projets de développement rural en Afrique de l'Ouest, j'ai produit des contenus qui renforcent la redevabilité, la confiance institutionnelle et amplifient la voix des communautés en situation de crise.</p>
+          <p data-en>I combine technical mastery of professional multimedia tools, strategic thinking in communication design, and deep familiarity with the visibility and capitalization frameworks of international donors (EU, AFD, USAID).</p>
+          <p data-fr>J'allie la maîtrise technique des outils professionnels de production multimédia, une réflexion stratégique en communication et une connaissance approfondie des exigences de visibilité et capitalisation des bailleurs internationaux (UE, AFD, USAID).</p>
+          <div class="tool-cloud">
+            <span class="tag">Adobe Premiere Pro</span>
+            <span class="tag">After Effects</span>
+            <span class="tag">DaVinci Resolve</span>
+            <span class="tag">Audition</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">Illustrator</span>
+            <span class="tag">InDesign</span>
+            <span class="tag">Canva</span>
+            <span class="tag">Midjourney</span>
+            <span class="tag">ElevenLabs</span>
+            <span class="tag">Whisper</span>
+          </div>
+        </div>
+        <div class="values reveal">
+          <div class="val">
+            <div class="val-icon">🌍</div>
+            <div>
+              <div class="val-title" data-en>Deep African Context</div>
+              <div class="val-title" data-fr>Ancrage Terrain Africain</div>
+              <div class="val-text" data-en>Mali, Benin, Uganda — 10+ years embedded in local realities, humanitarian ecosystems and fragile contexts.</div>
+              <div class="val-text" data-fr>Mali, Bénin, Ouganda — 10+ ans ancré dans les réalités locales, les écosystèmes humanitaires et les contextes fragiles.</div>
+            </div>
+          </div>
+          <div class="val">
+            <div class="val-icon">🎯</div>
+            <div>
+              <div class="val-title" data-en>Donor-Aligned Communication</div>
+              <div class="val-title" data-fr>Communication Orientée Bailleurs</div>
+              <div class="val-text" data-en>Expert in EU, AFD and USAID visibility requirements, reporting frameworks and project capitalization.</div>
+              <div class="val-text" data-fr>Expert des exigences de visibilité UE, AFD et USAID, des cadres de reporting et de la capitalisation de projets.</div>
+            </div>
+          </div>
+          <div class="val">
+            <div class="val-icon">📚</div>
+            <div>
+              <div class="val-title" data-en>Training &amp; Capacity Building</div>
+              <div class="val-title" data-fr>Formation &amp; Renforcement de Capacités</div>
+              <div class="val-text" data-en>Designing and delivering communication training programs for local teams and partner organizations.</div>
+              <div class="val-text" data-fr>Conception et animation de formations en communication pour les équipes locales et organisations partenaires.</div>
+            </div>
+          </div>
+          <div class="val">
+            <div class="val-icon">⚡</div>
+            <div>
+              <div class="val-title" data-en>AI-Enhanced Production</div>
+              <div class="val-title" data-fr>Production Augmentée par l'IA</div>
+              <div class="val-text" data-en>Integrating AI tools (Midjourney, ElevenLabs, Whisper) to accelerate production and enrich outputs.</div>
+              <div class="val-text" data-fr>Intégration des outils IA (Midjourney, ElevenLabs, Whisper) pour accélérer la production et enrichir les livrables.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+  <section id="experience">
+    <div class="sec">
+      <p class="sec-lbl reveal" data-en>Work History</p>
+      <p class="sec-lbl reveal" data-fr>Parcours Professionnel</p>
+      <h2 class="sec-title reveal">
+        <span data-en>Key Experience</span>
+        <span data-fr>Expériences Clés</span>
+      </h2>
+      <div class="sec-bar reveal"></div>
+      <div class="timeline">
+
+        <div class="tl-item reveal">
+          <div class="tl-date">
+            <div class="tl-date-main" data-en>2025 – Present</div>
+            <div class="tl-date-main" data-fr>2025 – Présent</div>
+            <div class="tl-date-loc">Kampala, Uganda</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-org">Cordaid · Saher · Uduma · AZHAR</div>
+            <div class="tl-role">
+              <span data-en>Independent Communication Consultant</span>
+              <span data-fr>Consultant Indépendant en Communication</span>
+            </div>
+            <div class="tl-desc" data-en>Communication and multimedia production consulting for international development clients. Design and implementation of strategic communication plans, production of audiovisual content, training and capacity building of field teams.</div>
+            <div class="tl-desc" data-fr>Conseil en communication et production multimédia pour des clients du développement international. Conception et mise en œuvre de plans de communication stratégique, production de contenus audiovisuels, formation et renforcement des capacités des équipes terrain.</div>
+            <div class="tl-tags">
+              <span class="tl-tag" data-en>Strategy</span><span class="tl-tag" data-fr>Stratégie</span>
+              <span class="tl-tag">Multimedia</span>
+              <span class="tl-tag" data-en>Training</span><span class="tl-tag" data-fr>Formation</span>
+              <span class="tl-tag" data-en>Consulting</span><span class="tl-tag" data-fr>Consultance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-date">
+            <div class="tl-date-main">2024</div>
+            <div class="tl-date-loc">Mali / Bénin</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-org">Upgrade Afrique</div>
+            <div class="tl-role">
+              <span data-en>Head of Communication &amp; Multimedia</span>
+              <span data-fr>Responsable Communication &amp; Multimédia</span>
+            </div>
+            <div class="tl-desc" data-en>Led the organization's full communication strategy across Mali and Benin. Managed editorial identity, produced institutional content, coordinated digital and field communications, and oversaw donor visibility and reporting.</div>
+            <div class="tl-desc" data-fr>Direction de la stratégie de communication de l'organisation au Mali et au Bénin. Gestion de l'identité éditoriale, production des contenus institutionnels, coordination des communications digitales et terrain, visibilité et reporting bailleurs.</div>
+            <div class="tl-tags">
+              <span class="tl-tag" data-en>Communication Leadership</span><span class="tl-tag" data-fr>Direction Communication</span>
+              <span class="tl-tag" data-en>Donor Visibility</span><span class="tl-tag" data-fr>Visibilité Bailleurs</span>
+              <span class="tl-tag" data-en>Digital</span><span class="tl-tag" data-fr>Numérique</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-date">
+            <div class="tl-date-main">2020 – 2023</div>
+            <div class="tl-date-loc">Mali</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-org">MINUSMA / United Nations</div>
+            <div class="tl-role">
+              <span data-en>Multimedia Producer</span>
+              <span data-fr>Producteur Multimédia</span>
+            </div>
+            <div class="tl-desc" data-en>Embedded multimedia producer for the UN peacekeeping mission in Mali. Produced video, photo, radio and motion design content for internal communications, peacebuilding campaigns, and counter-disinformation initiatives. Operated in complex, high-risk environments across the Sahel.</div>
+            <div class="tl-desc" data-fr>Producteur multimédia intégré à la mission de maintien de la paix de l'ONU au Mali. Production de contenus vidéo, photo, radio et motion design pour la communication interne, les campagnes de consolidation de la paix et la lutte contre la désinformation. Intervention en environnements complexes à risques élevés dans le Sahel.</div>
+            <div class="tl-tags">
+              <span class="tl-tag">Video · Photo · Radio</span>
+              <span class="tl-tag">Motion Design</span>
+              <span class="tl-tag" data-en>Peacekeeping</span><span class="tl-tag" data-fr>Maintien de la Paix</span>
+              <span class="tl-tag" data-en>Counter-Disinformation</span><span class="tl-tag" data-fr>Lutte Désinformation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SKILLS ═══════════════════ -->
+  <section id="skills">
+    <div class="sec">
+      <p class="sec-lbl reveal" data-en>What I Bring</p>
+      <p class="sec-lbl reveal" data-fr>Mes Compétences</p>
+      <h2 class="sec-title reveal">
+        <span data-en>Areas of Expertise</span>
+        <span data-fr>Domaines d'Expertise</span>
+      </h2>
+      <div class="sec-bar reveal"></div>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <div class="sk-icon">🎬</div>
+          <div class="sk-title" data-en>Multimedia Production</div>
+          <div class="sk-title" data-fr>Production Multimédia</div>
+          <ul class="sk-list">
+            <li data-en>Video &amp; Documentary</li><li data-fr>Vidéo &amp; Documentaire</li>
+            <li data-en>Photography</li><li data-fr>Photographie</li>
+            <li data-en>Radio &amp; Podcast</li><li data-fr>Radio &amp; Podcast</li>
+            <li>Motion Design</li>
+            <li data-en>Live streaming (multicam)</li><li data-fr>Streaming multicaméra</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="sk-icon">📢</div>
+          <div class="sk-title" data-en>Strategic Communication</div>
+          <div class="sk-title" data-fr>Communication Stratégique</div>
+          <ul class="sk-list">
+            <li data-en>Communication Plans</li><li data-fr>Plans de Communication</li>
+            <li data-en>Institutional Communication</li><li data-fr>Communication Institutionnelle</li>
+            <li data-en>Community Communication</li><li data-fr>Communication Communautaire</li>
+            <li data-en>Donor Visibility &amp; Reporting</li><li data-fr>Visibilité &amp; Reporting Bailleurs</li>
+            <li data-en>Counter-Disinformation</li><li data-fr>Lutte contre la Désinformation</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="sk-icon">✍️</div>
+          <div class="sk-title" data-en>Content &amp; Storytelling</div>
+          <div class="sk-title" data-fr>Contenu &amp; Storytelling</div>
+          <ul class="sk-list">
+            <li data-en>Impact Storytelling</li><li data-fr>Storytelling d'Impact</li>
+            <li data-en>Project Capitalization</li><li data-fr>Capitalisation de Projets</li>
+            <li data-en>Social Media Content</li><li data-fr>Contenu Réseaux Sociaux</li>
+            <li data-en>Editorial Identity</li><li data-fr>Identité Éditoriale</li>
+            <li data-en>Reports &amp; Publications</li><li data-fr>Rapports &amp; Publications</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="sk-icon">🎨</div>
+          <div class="sk-title" data-en>Visual Design</div>
+          <div class="sk-title" data-fr>Design Visuel</div>
+          <ul class="sk-list">
+            <li data-en>Visual Identity</li><li data-fr>Identité Visuelle</li>
+            <li data-en>Graphic Design</li><li data-fr>Création Graphique</li>
+            <li data-en>Infographics</li><li data-fr>Infographies</li>
+            <li>Photoshop · Illustrator</li>
+            <li>Canva · InDesign</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="sk-icon">🤖</div>
+          <div class="sk-title" data-en>AI for Media</div>
+          <div class="sk-title" data-fr>IA Appliquée aux Médias</div>
+          <ul class="sk-list">
+            <li>Midjourney</li>
+            <li>ElevenLabs</li>
+            <li>Whisper (OpenAI)</li>
+            <li data-en>AI-powered video editing</li><li data-fr>Montage assisté par IA</li>
+            <li data-en>Generative content creation</li><li data-fr>Création de contenu génératif</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="sk-icon">📚</div>
+          <div class="sk-title" data-en>Training &amp; Facilitation</div>
+          <div class="sk-title" data-fr>Formation &amp; Facilitation</div>
+          <ul class="sk-list">
+            <li data-en>Communication Training</li><li data-fr>Formation en Communication</li>
+            <li data-en>Capacity Building</li><li data-fr>Renforcement de Capacités</li>
+            <li data-en>Workshop Design</li><li data-fr>Conception d'Ateliers</li>
+            <li data-en>Field Team Support</li><li data-fr>Appui Équipes Terrain</li>
+            <li data-en>Curriculum Design</li><li data-fr>Ingénierie Pédagogique</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PORTFOLIO ═══════════════════ -->
+  <section id="portfolio">
+    <div class="sec">
+      <p class="sec-lbl reveal" data-en>My Work</p>
+      <p class="sec-lbl reveal" data-fr>Mes Réalisations</p>
+      <h2 class="sec-title reveal">Portfolio</h2>
+      <div class="sec-bar reveal"></div>
+      <div class="portfolio-card reveal">
+        <div class="pf-text">
+          <div class="pf-label" data-en>Full portfolio on Behance</div>
+          <div class="pf-label" data-fr>Portfolio complet sur Behance</div>
+          <h3 class="pf-title" data-en>10+ years of multimedia work across Africa</h3>
+          <h3 class="pf-title" data-fr>Plus de 10 ans de production multimédia en Afrique</h3>
+          <p class="pf-sub" data-en>Videos, photo essays, motion design, graphic design and institutional communication materials produced for UN peacekeeping, development NGOs and international programs — all visible on Behance.</p>
+          <p class="pf-sub" data-fr>Vidéos, reportages photo, motion design, design graphique et supports de communication institutionnelle produits pour le maintien de la paix de l'ONU, des ONG de développement et des programmes internationaux — tout sur Behance.</p>
+          <div class="pf-highlights">
+            <div class="pf-hl">
+              <div class="pf-hl-icon">🎬</div>
+              <div class="pf-hl-title" data-en>Video &amp; Documentary</div>
+              <div class="pf-hl-title" data-fr>Vidéo &amp; Documentaire</div>
+              <div class="pf-hl-sub">MINUSMA · Cordaid · Uduma</div>
+            </div>
+            <div class="pf-hl">
+              <div class="pf-hl-icon">🖼️</div>
+              <div class="pf-hl-title" data-en>Visual Identity &amp; Design</div>
+              <div class="pf-hl-title" data-fr>Identité Visuelle &amp; Design</div>
+              <div class="pf-hl-sub">Upgrade Afrique · AZHAR</div>
+            </div>
+            <div class="pf-hl">
+              <div class="pf-hl-icon">✨</div>
+              <div class="pf-hl-title">Motion Design</div>
+              <div class="pf-hl-sub" data-en>UN Peacebuilding Campaigns</div>
+              <div class="pf-hl-sub" data-fr>Campagnes ONU Consolidation Paix</div>
+            </div>
+          </div>
+          <a href="https://www.behance.net/dieudonne_dah" target="_blank" class="btn btn-primary">
+            <span data-en>View on Behance ↗</span>
+            <span data-fr>Voir sur Behance ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section id="contact">
+    <div class="sec">
+      <p class="sec-lbl reveal" data-en>Let's Work Together</p>
+      <p class="sec-lbl reveal" data-fr>Travaillons Ensemble</p>
+      <h2 class="sec-title reveal">
+        <span data-en>Get in Touch</span>
+        <span data-fr>Me Contacter</span>
+      </h2>
+      <div class="sec-bar reveal"></div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <p class="contact-intro" data-en>Available for short and long-term consultancies, salaried positions, and project-based collaborations with NGOs, UN agencies, and development programs across Africa. Open to field deployments.</p>
+          <p class="contact-intro" data-fr>Disponible pour des consultances courtes ou longues durées, des postes salariés et des collaborations sur projets avec des ONG, agences ONU et programmes de développement en Afrique. Ouvert aux déploiements terrain.</p>
+          <div class="contact-items">
+            <a href="mailto:godgivenones@gmail.com" class="c-item">
+              <div class="c-icon">✉️</div>
+              <div>
+                <div class="c-lbl">Email</div>
+                <div class="c-val">godgivenones@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://www.behance.net/dieudonne_dah" target="_blank" class="c-item">
+              <div class="c-icon">🎨</div>
+              <div>
+                <div class="c-lbl">Behance</div>
+                <div class="c-val" data-en>View my portfolio</div>
+                <div class="c-val" data-fr>Voir mon portfolio</div>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/dieudonnedah" target="_blank" class="c-item">
+              <div class="c-icon">💼</div>
+              <div>
+                <div class="c-lbl">LinkedIn</div>
+                <div class="c-val">Dieudonné Dah</div>
+              </div>
+            </a>
+            <div class="c-item" style="cursor:default;pointer-events:none;">
+              <div class="c-icon">📍</div>
+              <div>
+                <div class="c-lbl" data-en>Location</div>
+                <div class="c-lbl" data-fr>Localisation</div>
+                <div class="c-val">Kampala, Uganda · UTC+3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="avail-card">
+            <div class="avail-status">
+              <div class="avail-dot"></div>
+              <span data-en>Open to opportunities</span>
+              <span data-fr>Ouvert aux opportunités</span>
+            </div>
+            <div class="avail-title" data-en>Looking for my next mission</div>
+            <div class="avail-title" data-fr>À la recherche de ma prochaine mission</div>
+            <p class="avail-body" data-en>Targeting Communication Officer, Multimedia Producer and Consultant positions with UN agencies, INGOs and development programs across Africa. Experienced in the field, fluent in humanitarian frameworks.</p>
+            <p class="avail-body" data-fr>Je cible des postes de Chargé de Communication, Producteur Multimédia et Consultant auprès d'agences ONU, ONGI et programmes de développement en Afrique. Rompu aux réalités du terrain et aux cadres humanitaires.</p>
+            <a href="mailto:godgivenones@gmail.com" class="btn btn-teal">
+              <span data-en>Send me an email</span>
+              <span data-fr>M'envoyer un email</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p data-en>© 2026 Dieudonné Dah — Communication &amp; Multimedia Consultant · Kampala, Uganda · <a href="mailto:godgivenones@gmail.com">godgivenones@gmail.com</a></p>
+    <p data-fr>© 2026 Dieudonné Dah — Consultant en Communication &amp; Multimédia · Kampala, Ouganda · <a href="mailto:godgivenones@gmail.com">godgivenones@gmail.com</a></p>
+  </footer>
+
+  <script>
+    // ── LANGUAGE SYSTEM ──────────────────────────────────
+    function setLang(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.documentElement.setAttribute('lang', lang);
+      localStorage.setItem('portfolio-lang', lang);
+    }
+    const stored   = localStorage.getItem('portfolio-lang');
+    const detected = stored || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+    setLang(detected);
+
+    // ── ACTIVE NAV ───────────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--teal)' : '';
+      });
+    }, { passive: true });
+
+    // ── SCROLL REVEAL ────────────────────────────────────
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
