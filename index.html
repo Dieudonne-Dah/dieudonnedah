@@ -432,7 +432,10 @@
           <span data-fr>Disponible pour de nouvelles opportunités</span>
         </div>
         <h1 class="hero-name">Dieudonné<br><span>Dah</span></h1>
-        <p class="hero-title">Communication &amp; Multimedia Consultant</p>
+        <p class="hero-title">
+          <span data-en>Communication &amp; Multimedia Consultant</span>
+          <span data-fr>Consultant en Communication &amp; Multimédia</span>
+        </p>
         <p class="hero-tagline" data-en>10+ years crafting powerful stories and strategic communication for humanitarian organizations across Africa.</p>
         <p class="hero-tagline" data-fr>Plus de 10 ans à créer des récits percutants et des stratégies de communication pour les organisations humanitaires en Afrique.</p>
         <div class="hero-ctas">
@@ -863,7 +866,6 @@
   </footer>
 
   <script>
-    // ── LANGUAGE SYSTEM ──────────────────────────────────
     function setLang(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
@@ -875,7 +877,6 @@
     const detected = stored || (navigator.language.startsWith('fr') ? 'fr' : 'en');
     setLang(detected);
 
-    // ── ACTIVE NAV ───────────────────────────────────────
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
@@ -886,7 +887,6 @@
       });
     }, { passive: true });
 
-    // ── SCROLL REVEAL ────────────────────────────────────
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
